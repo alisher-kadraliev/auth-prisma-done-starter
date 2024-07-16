@@ -29,6 +29,7 @@ export default auth((req: NextRequest & { auth: Session | null }): Response | vo
         return
     }
     if (!isLoggedIn && !isPublicRoute) {
+        
         return Response.redirect(new URL("/auth/login", nextUrl))
     }
     return
