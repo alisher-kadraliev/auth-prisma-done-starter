@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PlaceholderContent from "@/components/page-content/placeholder-content";
+import PlaceholderContent from "@/components/page-content/account";
 
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import {
@@ -29,7 +29,6 @@ export default function DashboardPage() {
                 </BreadcrumbList>
             </Breadcrumb>
             <PlaceholderContent />
-
         </ContentLayout>
     );
 }

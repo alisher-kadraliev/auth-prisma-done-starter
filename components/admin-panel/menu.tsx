@@ -15,6 +15,7 @@ import {
   TooltipContent,
   TooltipProvider
 } from "@/components/ui/tooltip";
+import { logout } from "@/actions/logout";
 
 interface MenuProps {
   isOpen: boolean | undefined;
@@ -24,6 +25,9 @@ export function Menu({ isOpen }: MenuProps) {
   const pathname = usePathname();
   const menuList = getMenuList(pathname);
 
+  const LogOutApp = () => {
+    logout()
+  }
   return (
     <ScrollArea className="[&>div>div[style]]:!block">
       <nav className="mt-8 h-full w-full">
@@ -108,9 +112,9 @@ export function Menu({ isOpen }: MenuProps) {
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
                   <Button
-                    onClick={() => {}}
+                    onClick={LogOutApp}
                     variant="outline"
-                    className="w-full justify-center h-10 mt-5"
+                    className="w-[50%] justify-center h-10 mt-5 absolute bottom-5"
                   >
                     <span className={cn(isOpen === false ? "" : "mr-4")}>
                       <LogOut size={18} />

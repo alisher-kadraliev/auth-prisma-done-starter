@@ -18,3 +18,12 @@ export const getUserById = async (id: string) => {
         return null
     }
 }
+export const getUserByDate = async (createdAt: any) => {
+    try {
+        const user = await db.user.findFirst({ where: { createdAt } })
+
+        return user
+    } catch (error) {
+        return null
+    }
+}
