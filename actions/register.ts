@@ -5,6 +5,9 @@ import bcrypt from "bcryptjs"
 import { RegisterSchema } from "@/schemas"
 import { db } from "@/lib/db"
 import { getUserByEmail } from "@/data/user"
+import { generateVerificaionToken } from "@/lib/tokens"
+import { sendVerificaionEmail } from "@/lib/mail"
+
 export const register = async (values: z.infer<typeof RegisterSchema>) => {
     const validatedFileds = RegisterSchema.safeParse(values)
     if (!validatedFileds.success) {
@@ -26,6 +29,11 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
         }
     })
 
+    const verificationToken = await generateVerificaionToken(email)
+    await sendVerificaionEmail(
+        verificationToken.email,
+        verificationToken.token
+    )
 
-    return { success: "Successfully registered!" }
+    return { success: "Confirmation email sent!" }
 } 

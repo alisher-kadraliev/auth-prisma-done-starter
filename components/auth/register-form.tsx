@@ -15,8 +15,8 @@ import * as z from "zod"
 import { RegisterSchema } from '@/schemas'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
-import { FormError } from '../form-success'
-import { FormSuccess } from '../form-error'
+import { FormError } from '../form-error'
+import { FormSuccess } from '../form-success'
 import { register } from '@/actions/register'
 
 const RegisterForm = () => {
@@ -39,8 +39,8 @@ const RegisterForm = () => {
         startTransition(() => {
             register(values)
                 .then((data) => {
-                    setError(data.error)
-                    setSuccess(data.success)
+                    setError(data?.error)
+                    setSuccess(data?.success)
                 })
 
         })
