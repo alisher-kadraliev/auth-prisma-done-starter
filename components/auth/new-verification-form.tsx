@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import CardWrapper from './card-wrapper'
 import { BeatLoader } from "react-spinners"
 import { useSearchParams } from 'next/navigation'
-import { newVerfication } from '@/actions/new-verification'
+import { newVerification } from '@/actions/new-verification'
 import { FormSuccess } from '../form-success'
 import { FormError } from '../form-error'
 
@@ -15,11 +15,12 @@ const NewVerificationForm = () => {
 
     const token = searchParams.get("token")
     const onSubmit = useCallback(() => {
+        console.log(token);
         if (!token) {
             setError("Missing token!")
             return
         }
-        newVerfication(token)
+        newVerification(token)
             .then((data) => {
                 setSuccess(data.success)
                 setError(data.error)

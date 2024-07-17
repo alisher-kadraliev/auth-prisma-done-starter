@@ -13,7 +13,6 @@ import Image from "next/image";
 
 export default function PlaceholderContent() {
   const user = useCurrentUser()
-  console.log(user);
   const fallbackImage = '/fallback-image.png';
   return (
 
@@ -64,7 +63,7 @@ export default function PlaceholderContent() {
                   <Label className="text-muted-foreground">
                     Created:
                   </Label>
-                  <div className="font-bold">{user?.id} </div>
+                  <div className="font-bold"></div>
                 </div>
               </div>
             </div>

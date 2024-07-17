@@ -25,7 +25,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
             return true
         },
-        async session({ token, session }) {
+        async session({ token, session, user }) {
 
             if (token.role && session.user) {
                 session.user.role = token.role as "ADMIN" | "USER"
@@ -34,15 +34,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 session.user.id = token.sub
             }
 
-    
             return session
         },
         async jwt({ token }) {
-            console.log(token);
             if (!token.sub) return token
 
             const existingUser = await getUserById(token.sub)
-
             if (!existingUser) return token
 
             token.role = existingUser.role
